@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all"/>
+  <title>making a blog</title>
+</head>
+<body>
+<table class="head">
+  <tr>
+    <td class="head-ltitle">making a blog</td>
+    <td class="head-vol">LOCAL</td>
+    <td class="head-rtitle">making a blog</td>
+  </tr>
+</table>
+<div class="manual-text">
+<section class="Sh">
+<h1 class="Sh" id="Objective"><a class="permalink" href="#Objective">Objective</a></h1>
+<p class="Pp">Create/document a (simpler) method for creating a static web site
+    to upload to github to be used as a blog or a technical document.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="Key_Features"><a class="permalink" href="#Key_Features">Key
+  Features</a></h1>
+<p class="Pp">o fast</p>
+<p class="Pp">o easy</p>
+<p class="Pp">o simple(r)</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="Intended_Users"><a class="permalink" href="#Intended_Users">Intended
+  Users</a></h1>
+<p class="Pp">Developers, technical writers, and anyone needing a simple blog
+    solution.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="Making_A_Blog"><a class="permalink" href="#Making_A_Blog">Making
+  A Blog</a></h1>
+<p class="Pp">When I looked into enabling &quot;GitHub Pages&quot; to create a
+    simple blog, I was a little put off at how &quot;difficult&quot; it was.
+    -i.e. you need a client app `Jekyll` or a `nojekyl` file and/or this and
+    that and I came to the conclusion it was too complicated! I have a text
+    editor and I type my notes in a really simple markdown style which is easy
+    to read and contains all the stuff I need (headings, titles, bold, italic,
+    code blocks, etc.) so, I decided to create a bit simpler method to create
+    static html files from my simple markdown text files.</p>
+<p class="Pp">I typically create my notes/files like:</p>
+<div class="Bd Pp Bd-indent">
+<pre>
+ date: &lt;a date&gt;
+ author: &lt;where or who I got it from&gt;
+ title: &quot;&lt;title&gt;&quot;
+
+ # title
+
+ # header
+ some text
+
+ *bold*
+ _italic_
+ ...
+</pre>
+</div>
+A while ago I wrote myself a little program to convert simple markdown syntax
+  items into mandoc (my program is to allow me to write man pages) so my thought
+  was that since `mandoc` can export to HTML--and it's already installed on many
+  *nix machines already--why can I not use that!?
+</section>
+<section class="Sh">
+<h1 class="Sh" id="DETAILS"><a class="permalink" href="#DETAILS">DETAILS</a></h1>
+<p class="Pp"><b class="Sy">Step 1</b> : Getting `md2mdoc`</p>
+<p class="Pp">Grab my utility--and install it--to convert markdown files to mdoc
+    files so `mandoc` can read them.</p>
+<div class="Bd Pp Bd-indent">
+<pre>
+ git clone https://github.com/JohnKaul/md2mdoc.git
+ ...
+ doas make install
+</pre>
+</div>
+<p class="Pp"><b class="Sy">Step 2</b> : Create a repository</p>
+<p class="Pp">Head over to GitHub and create a new public repository named
+    &quot;username.github.io&quot;, where `username` is your username on
+  GitHub.</p>
+<p class="Pp"><b class="Sy">Step 3</b> : Clone the repository</p>
+<p class="Pp">Go to the folder where you want to store your project, and clone
+    the new repository:</p>
+<div class="Bd Pp Bd-indent">
+<pre>
+ git clone https://github.com/username/username.github.io
+</pre>
+</div>
+Open your new project folder.
+<p class="Pp"><b class="Sy">Step 4</b> : Create Something</p>
+<p class="Pp">Create some text:</p>
+<div class="Bd Pp Bd-indent">
+<pre>
+ vim myblog.md
+</pre>
+</div>
+<p class="Pp">myblog.md contents:</p>
+<div class="Bd Pp Bd-indent">
+<pre>
+ date: Jun 30 2025
+ author: John Kaul
+ title: &quot;my blog&quot;
+
+ # My Blog
+ This is some text which other people beside me will find important.
+</pre>
+</div>
+<p class="Pp">Fetch some pretty (for your html files).</p>
+<div class="Bd Pp Bd-indent">
+<pre>
+ fetch -o style.css https://man.openbsd.org/mandoc.css
+</pre>
+</div>
+<p class="Pp"><b class="Sy">Step 5</b> Convert your markdown to html:</p>
+<div class="Bd Pp Bd-indent">
+<pre>
+ % md2mdoc myblog.md index.1 &amp;&amp; mandoc -Thtml -I os='' -Otoc,style=style.css index.1 &gt; index.html &amp;&amp; rm index.1
+</pre>
+</div>
+<p class="Pp"><b class="Sy">Step 6</b> Push it:</p>
+<p class="Pp">Add, commit, and push your changes:</p>
+<div class="Bd Pp Bd-indent">
+<pre>
+ git add --all
+ git commit -m &quot;Initial commit&quot;
+ git push -u origin main
+</pre>
+</div>
+</section>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">Jun 30 2025</td>
+    <td class="foot-os"></td>
+  </tr>
+</table>
+</body>
+</html>
