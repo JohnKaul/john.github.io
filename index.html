@@ -114,13 +114,13 @@ Open your new project folder.
  fetch -o style.css https://man.openbsd.org/mandoc.css
 </pre>
 </div>
-<p class="Pp"><b class="Sy">Step 5</b> Convert your markdown to html:</p>
+<p class="Pp"><b class="Sy">Step 5</b> : Convert your markdown to html</p>
 <div class="Bd Pp Bd-indent">
 <pre>
  % md2mdoc myblog.md index.1 &amp;&amp; mandoc -Thtml -I os='' -Otoc,style=style.css index.1 &gt; index.html &amp;&amp; rm index.1
 </pre>
 </div>
-<p class="Pp"><b class="Sy">Step 6</b> Push it:</p>
+<p class="Pp"><b class="Sy">Step 6</b> : Push it</p>
 <p class="Pp">Add, commit, and push your changes:</p>
 <div class="Bd Pp Bd-indent">
 <pre>
@@ -129,6 +129,10 @@ Open your new project folder.
  git push -u origin main
 </pre>
 </div>
+<p class="Pp"><b class="Sy">Step 7</b> : Enable pages</p>
+<p class="Pp">Go to your project's setting on GitHub and enable pages. Choose
+    the settings you want and the URL for your blog will be located at the top
+    of the page.</p>
 </section>
 </div>
 <table class="foot">
